@@ -83,8 +83,13 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 if os.getenv("DEVELOPMENT_MODE", "False") == "True":
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+            "ENGINE": os.getenv("DB_ENGINE", "django.db.backends.postgresql"),
+            "NAME": os.getenv("DB_NAME", "my_db"),
+            "USER": os.getenv("DB_USER", "user"),
+            "PASSWORD": os.getenv("DB_PASSWORD", "password"),
+            "HOST": os.getenv("DB_HOST", "db"),
+            "PORT": os.getenv("DB_PORT", "5432"),        
+
         }
     }
 elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
