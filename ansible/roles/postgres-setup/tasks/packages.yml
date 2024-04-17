@@ -1,0 +1,17 @@
+---
+- name: Install PostgreSQL packages
+  yum:
+    name:
+      - postgresql-server
+      - postgresql-contrib
+    state: present
+
+- name: Initialize PostgreSQL database
+  command: initdb -D /var/lib/pgsql/data
+  become_user: postgres
+
+- name: Start PostgreSQL service
+  systemd:
+    name: postgresql
+    state: started
+    enabled: yes

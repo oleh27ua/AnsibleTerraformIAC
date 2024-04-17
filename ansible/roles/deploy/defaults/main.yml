@@ -1,0 +1,7 @@
+# Default variables for the deploy role
+---
+app_name: sample-django
+app_repo: https://github.com/digitalocean/sample-django.git
+app_version: master
+app_path: /opt/{{ app_name }}
+django_settings_module: config.settings

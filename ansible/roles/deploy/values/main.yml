@@ -1,0 +1,6 @@
+---
+db_name: myapp
+db_user: myappuser
+db_password: myapppassword
+db_host: "{{ hostvars['db']['ansible_host'] }}"
+db_port: 5432

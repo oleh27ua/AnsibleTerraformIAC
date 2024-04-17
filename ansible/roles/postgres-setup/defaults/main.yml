@@ -1,0 +1,4 @@
+---
+db_name: myapp
+db_user: myappuser
+db_password: myapppassword

@@ -1,0 +1,6 @@
+# Playbook to deploy the application
+---
+- hosts: webservers
+  become: yes
+  roles:
+    - deploy

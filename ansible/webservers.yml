@@ -1,0 +1,6 @@
+# Playbook to configure the application servers
+---
+- hosts: webservers
+  become: yes
+  roles:
+    - webserver-setup

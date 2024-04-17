@@ -1,0 +1,5 @@
+---
+- name: Create Django settings file
+  template:
+    src: app.env.j2
+    dest: "{{ app_path }}/app.env"

@@ -1,0 +1,7 @@
+---
+- name: Run Django migrations
+  django_manage:
+    command: migrate
+    app_path: "{{ app_path }}"
+    settings: "{{ django_settings_module }}"
+    virtualenv: "{{ app_path }}/venv"

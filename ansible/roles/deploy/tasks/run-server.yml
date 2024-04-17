@@ -1,0 +1,28 @@
+---
+- name: Clone the Django repository
+  git:
+    repo: "{{ app_repo }}"
+    dest: "{{ app_path }}"
+    version: "{{ app_version }}"
+
+- name: Install Python dependencies
+  pip:
+    requirements: "{{ app_path }}/requirements.txt"
+    virtualenv: "{{ app_path }}/venv"
+
+- name: Copy Nginx configuration
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/conf.d/default.conf
+  notify: restart nginx
+
+- name: Start Django application
+  systemd:
+    name: django
+    state: started
+    enabled: yes
+  environment:
+    DJANGO_SETTINGS_MODULE: "{{ django_settings_module }}"
+  shell: |
+    . {{ app_path }}/venv/bin/activate
+    python {{ app_path }}/manage.py runserver 0.0.0.0:8000

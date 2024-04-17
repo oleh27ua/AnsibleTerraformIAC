@@ -1,0 +1,6 @@
+# Handlers for the deploy role
+---
+- name: restart nginx
+  systemd:
+    name: nginx
+    state: restarted

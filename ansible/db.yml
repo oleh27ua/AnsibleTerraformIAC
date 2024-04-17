@@ -1,0 +1,6 @@
+# Playbook to configure the database server
+---
+- hosts: db
+  become: yes
+  roles:
+    - postgres-setup
